@@ -1,7 +1,7 @@
 #https://dumskaya.net/
 def register_user():
     import time
-    from Lesson.factory.new_user import User
+    from factory.new_user import User
     from selenium import webdriver
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
