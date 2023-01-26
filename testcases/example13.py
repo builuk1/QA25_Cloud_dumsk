@@ -14,7 +14,7 @@ def register_user_with_same_nick():
     my_user = User()
 
     options = ChromeOptions()
-    options.headless = False  # True Запуск теста без включения браузера
+    options.headless = True  # True Запуск теста без включения браузера
 
     path = f'{os.getcwd()}/drivers/chromedriver'
     service = Service(executable_path=path)
