@@ -1,7 +1,7 @@
 from example1 import register_user as positive_register
 from example_6 import register_user as empty_register
 from example_16 import register_user as password_diff
-from example9 import register_user_without_email
+from example9_1 import register_user_without_email
 from example13 import register_user_with_same_nick
 
 def test_user_registration_positive():
