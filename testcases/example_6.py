@@ -1,4 +1,3 @@
-#https://dumskaya.net/
 def register_user():
     import time
     from factory.new_user import User
@@ -11,6 +10,8 @@ def register_user():
     import os
 
     my_user = User()
+    # my_user.nick = my_user.nick + my_user.nick + my_user.nick + my_user.nick
+    # length = len(my_user.nick)
     options = ChromeOptions()
     foptions = FirefoxOptions()
     options.headless = True#True Запуск теста без включения браузера
@@ -41,30 +42,21 @@ def register_user():
     enter_registration_button = WebDriverWait(driver, 30).until(EC.presence_of_element_located(('xpath', xpath_enter_registration_button)))
     enter_registration_button.click()
 
-    register_email_field = WebDriverWait(driver, 30).until(EC.presence_of_element_located(('xpath', xpath_register_email)))
-    register_email_field.send_keys(my_user.email)
-
-    register_nick = WebDriverWait(driver, 30).until(EC.presence_of_element_located(('xpath', xpath_register_nick)))
-    register_nick.send_keys(my_user.nick)
-
-    register_password = WebDriverWait(driver, 30).until(EC.presence_of_element_located(('xpath', xpath_register_password)))
-    register_password.send_keys(my_user.password)
-
-    register_password2 = WebDriverWait(driver, 30).until(EC.presence_of_element_located(('xpath', xpath_register_password2)))
-    register_password2.send_keys(my_user.password)
-
-    register_gender_male = WebDriverWait(driver, 30).until(EC.presence_of_element_located(('xpath', xpath_register_gender_male)))
-    register_gender_male.click()
-
     register_gender_button = WebDriverWait(driver, 30).until(EC.presence_of_element_located(('xpath', xpath_register_button)))
     register_gender_button.click()
 
-    login_textarea = WebDriverWait(driver, 30).until(EC.presence_of_element_located(('xpath', xpath_user_finish)))
+    login_textarea = WebDriverWait(driver, 30).until(EC.presence_of_element_located(('xpath', '//td[@class="newscol"]/div')))
     login = login_textarea.text
 
     driver.close()
 
-    return my_user.nick, login #'Пользователь с таким ником уже зарегистрирован. Придумайте другой'
-    # return  login_error, 'Пользователь с таким ником уже зарегистрирован. Придумайте другой'
+    s = '''Пользователь с таким адресом электронной почты уже зарегистрирован.
+Пользователь с таким ником уже зарегистрирован. Придумайте другой
+Укажите ник.
+Укажите е-mail. Он нужен для входа в сайт.
+Длина пароля должна быть не меньше 6 символов. А то его у вас украдут, а мы виноваты будем.'''
+
+    return login, s
+
 if __name__ == '__main__':
     print(register_user())
